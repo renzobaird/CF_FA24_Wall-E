@@ -7,6 +7,8 @@
  https://www.arduino.cc/en/Tutorial/LibraryExamples/Sweep
 */
 
+// Alan Z was here
+
 #include <Servo.h>
 
 Servo myservo;  // create Servo object to control a servo
