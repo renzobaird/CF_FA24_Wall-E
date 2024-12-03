@@ -12,9 +12,10 @@ bool forward;
 bool autoActive = false;
 
 void setup() {
+  // Top plant setup
   grow1 = true, grow2 = true, grow3 = true, grow4 = true;  
 
-  // put your setup code here, to run once:
+  // Pin Setup
   pinMode(buttonPin, INPUT);
   pinMode(buttonPin2, INPUT);
   pinMode(buttonPin3, INPUT);
@@ -23,18 +24,20 @@ void setup() {
   pinMode(ledPin2, OUTPUT);
   pinMode(ledPin3, OUTPUT);
 
+  // Servo Setup
   servo1.attach(3);
   servo2.attach(5);
   servo3.attach(7);
   plantServo.attach(9);
-
   plantServo.write(0);
 }
 
 void loop() {
+  // Mechanism 1
   if (digitalRead(buttonPin) == HIGH){
     servo1.write(180); // tells servo what angle to turn 
 
+    // Top plant position 1
     if (grow1) {
       grow1 = false;
       plantServo.write(45); 
@@ -42,10 +45,13 @@ void loop() {
   } else { 
     servo1.write(0); 
   }
+
+  // Mechanism 2
   if (digitalRead(buttonPin2) == HIGH){
     servo2.write(25);
     autoActive = true;
 
+    // Top plant position 2
     if (grow2) {
       grow2 = false;
       plantServo.write(90); 
@@ -58,9 +64,11 @@ void loop() {
     SpinAuto();
   }
 
+  // Mechanism 3
   if ((digitalRead(buttonPin3) == HIGH)) {
     autoActive = false;
 
+    // Top plant position 3
     if (grow3) {
       grow3 = false;
       plantServo.write(135); 
@@ -69,7 +77,9 @@ void loop() {
     digitalWrite(ledPin3, HIGH);
   }
 
+  // Mechanism 4
   if (digitalRead(buttonPin4) == HIGH){
+    // Top plant position 4
     if (grow4) {
       grow4 = false;
       plantServo.write(180); 
@@ -82,6 +92,7 @@ void loop() {
   timer = millis();
 }
 
+// Spin Auto back and forth
 void SpinAuto() {
   if (servoAngle == 120) {
     servo3.write(0);
